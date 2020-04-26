@@ -1,98 +1,60 @@
-import java.util.*;
+package HomeWorkoutPlan;
 
-public class Program implements Comparable {
-	private List<Exercise> exercises = new ArrayList<>();
-	private final int numOfTotalExercises = 4;
-	private float duration = 0.0f;
-	private float intensityLevel = 0.0f;
-	private List<String> preferredExercise = new ArrayList<>();
-	private int highestIntensity = 0;
-	private boolean balanced = false;
-	public Program(List<String> preferredExercise, int intensity) {
-		this.preferredExercise = preferredExercise;
-		this.intensityLevel = intensity;
-		this.getAppropriateExercise();
-		this.sortExercises();
-	}
-	public Program(String preferredExercise[], int intensity) {
-		this.preferredExercise = Array.asList(preferredExercise);
-		this.intensityLevel = intensity;
-		this.getAppropriateExercise();
-		this.sortExercises();
-	}
-	private void getAppropriateExercise() {
-		for (Exercise e : this.preferredExercise) {
-			switch (e.toLowerCase()) {
-				case "strength":
-				case "strengthexercise":
-				case "strength exercise":
-				{
-					Exercise strengthExercise = new StrengthExercise();
-					if (strengthExercise.intensity > this.intensityLevel / 1.10 && strengthExercise.intensity < this.intensityLevel * 1.10) {
-						exercises.add(strengthExercise);
-						this.duration += strengthExercise.duration;
-						if (strengthExercise.intensity > this.highestIntensity) this.highestIntensity = strengthExercise.intensity;
-					}
-					break;
-				}
-				case "endurance":
-				case "enduranceexercise":
-				case "endurance exercise":
-				{
-					Exercise enduranceExercise = new EnduranceExercise();
-					if (enduranceExercise.intensity > this.intensityLevel / 1.10 && enduranceExercise.intensity < this.intensityLevel * 1.10) {
-						exercises.add(enduranceExercise);
-						this.duration += enduranceExercise.duration;
-						if (enduranceExercise.intensity > this.highestIntensity) this.highestIntensity = enduranceExercise.intensity;
-					}
-					break;
-				}
-				case "flexibility":
-				case "flexibilityexercise":
-				case "flexibility exercise":
-				{
-					Exercise flexibilityExercise = new FlexibilityExercise();
-					if (flexibilityExercise.intensity > this.intensityLevel / 1.10 && flexibilityExercise.intensity < this.intensityLevel * 1.10) {
-						exercises.add(flexibilityExercise);
-						this.duration += flexibilityExercise.duration;
-						if (flexibilityExercise.intensity > this.highestIntensity) this.highestIntensity = flexibilityExercise.intensity;
-					}
-					break;
-				}
-				case "balance":
-				case "balanceexercise":
-				case "balance exercise":
-				{
-					Exercise balanceExercise = new BalanceExercise();
-					if (balanceExercise.intensity > this.intensityLevel / 1.10 && balanceExercise.intensity < this.intensityLevel * 1.10) {
-						exercises.add(balanceExercise);
-						this.duration += balanceExercise.duration;
-						if (balanceExercise.intensity > this.highestIntensity) this.highestIntensity = balanceExercise.intensity;
-					}
-					break;
-				}
-			}
-			return this.exercises;
-		}
-	}
+public class Program{
 
-	@Override
-	public int compareTo(Exercise other) {
-		int compare = ((Exercise) other).intensity;
-		return this.intensity - compare;
-	}
+    Program ProgramOne = new Program();
+    Program ProgramTwo = new Program();
+    Program ProgramTree = new Program();
+    Program ProgramFour = new Program();
 
-	private void sortExercises() {
-		Collections.sort(this.exercises);
-		List<String> className = new ArrayList<>();
-		this.exercises.forEach(e -> {
-			if (className.size() == 0) className.add(e.getClass().toString());
-			else if (className.indexOf(e.getClass().toString()) != -1) continue;
-			else className.add(e.getClass().toString());
-		});
-		if (className.size() == this.numOfTotalExercises) this.balanced = true;
-	}
-	public float getIntensityLevel() {
-		return this.intensityLevel;
-	}
+
+    //fields
+    private Exercise[] exercises;
+    private int duration;
+    private int intensityLevel;
+    private String balanced;
+    private String category;
+
+
+//getters and setters
+
+    public Exercise[] getExercises() {
+        return exercises;
+    }
+
+    public void setExercises(Exercise[] exercises) {
+        this.exercises = exercises;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) { this.duration = duration*2; }
+
+    public int getIntensityLevel() {
+        return intensityLevel;
+    }
+
+    public void setIntensityLevel(int intensityLevel) {
+        this.intensityLevel = intensityLevel;
+    }
+
+    public void setCategory(String category) {
+
+        if (category == category) {
+
+            this.category = balanced;
+
+        } else {
+
+            throw new IllegalArgumentException("This program is not balanced");
+        }
+
+
+    };
+
+
 }
+
+
